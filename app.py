@@ -1,7 +1,8 @@
 import dash #combo of flask, react.js, plotly.js
-import dash_core_components as dcc #  create interactive components
+from dash import dcc, html # create interactive components, access HTML tags
 import dash_bootstrap_components as dbc
-import dash_html_components as html #access HTML tags
+# import dash_core_components as dcc #  create interactive components
+# import dash_html_components as html #access HTML tags
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import plotly.graph_objects as go
@@ -14,7 +15,7 @@ from helper_stats import *
 
 
 
-# ------------- intializing app -------------
+# ------------- initializing app -------------
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "COVID-19 Event Simulator"
 server = app.server
@@ -597,5 +598,5 @@ def run_sim(n_clicks, location, event_duration, num_people, event_setting, test_
     # loc_fig.show()
     return avp_fig, loc_fig
 
-if __name__ == "__main__":
-    app.run_server(debug=True)
+# if __name__ == "__main__":
+#     app.run_server(debug=True)
