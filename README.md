@@ -10,7 +10,7 @@ Files required for running:
 * `covasim_testbed.ipynb`: statestimeseries.csv, UStimeseries.csv, states.csv
 * `app.py`: helper_stats.py, statestimeseries.csv, UStimeseries.csv, states.csv
 
-## Deploying `app.py` with Heroku
+### Deploying `app.py` with Heroku
 > NOTE: Refer to Heroku's [Getting Started with Python](https://devcenter.heroku.com/articles/getting-started-with-python) guide.
 
 Prerequisites:
@@ -66,3 +66,33 @@ Scaling dynos... done, now running web at 1:Basic
 ```bash
 $ heroku open
 ```
+
+### Update data daily from Covid Act Now (US COVID Tracker)
+1. Register for free access to Covid Act Now's [Data API](https://covidactnow.org/data-api)
+
+2. Add your API key to your deployment environment:
+
+* Local: 
+  * `export COVIDACTNOW_API_KEY=<insert-key-string>`
+* Heroku:
+  * Navigate to your application's Settings >> Config Vars
+  * Add a new variable with:
+    * key: `COVIDACTNOW_API_KEY`
+    * value: `<insert-key-string>`
+
+3. (Optional) Install [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler):
+
+```bash
+# Install free scheduler add-on
+heroku addons:create scheduler:standard
+
+# Open scheduler dashboard
+heroku addons:open scheduler
+```
+
+4. Configure the daily update job:
+
+Options:
+* Job: `python3 update_data.py`
+* Dyno Size: Basic
+* Frequency: Daily at 4:00 PM UTC
