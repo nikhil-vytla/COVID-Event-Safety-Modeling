@@ -11,4 +11,4 @@ Files required for running:
 * `app.py`: helper_stats.py, statestimeseries.csv, UStimeseries.csv, states.csv
 
 ## Deploying with Heroku
-* Refer to https://devcenter.heroku.com/articles/getting-started-with-python
+* Refer to Heroku's [Getting Started with Python](https://devcenter.heroku.com/articles/getting-started-with-python) guide.
