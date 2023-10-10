@@ -1,10 +1,13 @@
+import os
 import urllib3
 import logging
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-with open('covidactnow_api.txt', 'r') as file:
-    api_key = file.read().replace('\n', '')
+# with open('covidactnow_api.txt', 'r') as file:
+#     api_key = file.read().replace('\n', '')
+
+api_key = os.environ['COVIDACTNOW_API_KEY']
 
 logger = logging.getLogger('projEpsilon')
 hdlr = logging.FileHandler('data_update.log')
