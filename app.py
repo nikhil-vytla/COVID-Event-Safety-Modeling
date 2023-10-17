@@ -346,7 +346,7 @@ def run_sim(n_clicks, location, event_duration, num_people, event_setting, test_
         avp_fig = go.Figure()
         return avp_fig, avp_fig
     if event_duration > 7:
-        avp_figure = go.Figure()
+        avp_fig = go.Figure()
         return avp_fig, avp_fig
     # ----- basic event characteristics ----- 
     event_duration = event_duration if event_duration != None else 1 #temp fix for misfiring nclicks
@@ -395,12 +395,12 @@ def run_sim(n_clicks, location, event_duration, num_people, event_setting, test_
             daily_infections_l10.append(cest_state_timeseries[cest_state_timeseries['date']==date_val]['infections'].sum())
         location_cases_d10 = sum(daily_infections_l10)
         incidence_avg = np.mean(daily_infections_l10[-7::])/location_pop # mean of last 7 total daily infections
-        perc_vax = can_usa_timeseries.iloc[-1]['metrics.vaccinationsCompletedRatio']
+        perc_vax = can_usa_timeseries.iloc[-1]['metrics.vaccinationsCompletedRatio'] # TODO(bugfix): this fails if last column value is NaN, should we specify last non-NaN value?
     else:
         location_total_inf = cest_state_timeseries[cest_state_timeseries['state']==location]['infections'].sum()
         location_cases_d10 = cest_state_timeseries[cest_state_timeseries['state']==location].iloc[range(-10,0,1)]['infections'].sum()
         incidence_avg = cest_state_timeseries[cest_state_timeseries['state']==location].iloc[range(-7,0,1)]['infections'].mean()/location_pop
-        perc_vax = can_state[can_state['state']==state_abv]['metrics.vaccinationsCompletedRatio'].values[0]
+        perc_vax = can_state[can_state['state']==state_abv]['metrics.vaccinationsCompletedRatio'].values[0] # TODO(bugfix): this data does not exist for HI, DC, NH
     
     # calculate location specific prevelance
     prevalence = ((location_cases_d10)/location_pop)*prevalence_mod
