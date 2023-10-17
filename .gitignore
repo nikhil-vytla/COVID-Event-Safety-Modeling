@@ -6,8 +6,8 @@ venv
 # covasim_testbed.ipynb
 __pycache__/helper_stats.cpython-36.pyc
 app.code-workspace
-nst-est2019-01.csv
-covasim_testbed_shagun.ipynb
+# nst-est2019-01.csv
+# covasim_testbed_shagun.ipynb
 covidactnow_api.txt
-covasim_testbed_shagun.ipynb
+# covasim_testbed_shagun.ipynb
 testing_under_rep_factor.ipynb
